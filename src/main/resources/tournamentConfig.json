@@ -10,12 +10,10 @@
     {
       "name": "Last Losing 2",
       "type": "LastLosingMovePlayer",
-      "default": "rock"
     },
     {
       "name": "Last Winning 1",
       "type": "LastWinningMovePlayer",
-      "default": "scissors"
     },
     {
       "name": "Majority Losing 1",
