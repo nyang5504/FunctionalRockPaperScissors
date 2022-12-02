@@ -1,6 +1,6 @@
 package please_refactor.rockpaperscissors
 
-import benjamingarrett.rockpaperscissorstools.{Paper, RPSHistoryBasedPlayer, RPSMove, Rock, Scissors}
+import benjamingarrett.rockpaperscissorstools.{Paper, RPSHistoryBasedPlayer, RPSMove, RPSTournament, Rock, Scissors}
 
 import scala.io.StdIn.readLine
 
@@ -62,9 +62,29 @@ object RockPaperScissorsCmdGame {
       new IndividualMatchRoundRobinTournament(numRounds),
       new IndividualMatchRoundRobinTournament(numRounds)
     )
-    val seasonResults: Map[RPSHistoryBasedPlayer, Int] = MixedTournamentSeason.handleTournamentSeason(players)(tournaments)
+    val seasonResults =
+      MixedTournamentSeason.handleTournamentSeason(players)(tournaments).toList.sortWith((firstPlayer, secondPlayer) => firstPlayer._2 > secondPlayer._2)
     println(s"Summary of tournament season:\n${seasonResults}")
     for (r <- seasonResults)
+      println(s"Player: ${r._1.playerInfo}   Points: ${r._2}")
+    println("===============")
+    val seasonResults2 =
+      MixedTournamentSeason.handleTournamentSeasonForClassLecture(players)(tournaments).toList.sortWith((firstPlayer, secondPlayer) => firstPlayer._2 > secondPlayer._2)
+    for (r <- seasonResults2)
+      println(s"Player: ${r._1.playerInfo}   Points: ${r._2}")
+    println("===============")
+    val allResults = tournaments
+      .map((event: RPSTournament) => event.playTournament(players))
+    val handle1 = MixedTournamentSeason.handle1(allResults)
+    val handle2 = MixedTournamentSeason.handle2(allResults)
+    val handle3 = MixedTournamentSeason.handle3(allResults)
+    for (r <- handle1)
+      println(s"Player: ${r._1.playerInfo}   Points: ${r._2}")
+    println("===============")
+    for (r <- handle2)
+      println(s"Player: ${r._1.playerInfo}   Points: ${r._2}")
+    println ("===============")
+    for (r <- handle3)
       println(s"Player: ${r._1.playerInfo}   Points: ${r._2}")
   }
 }
