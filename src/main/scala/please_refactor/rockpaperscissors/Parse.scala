@@ -34,24 +34,6 @@ object Parse {
     {
       "name": "Unbiased Random 1",
       "type": "RandomMovePlayer"
-    },
-    {
-      "name": "Biased Random 1",
-      "type": "BiasedRandomMovePlayer",
-      "weights": {
-        "rock": 0.5,
-        "paper": 0.25,
-        "scissors": 0.25
-      }
-    },
-    {
-      "name": "Biased Random 2",
-      "type": "BiasedRandomMovePlayer",
-      "weights": {
-        "rock": 0.8,
-        "paper": 0.1,
-        "scissors": 0.1
-      }
     }
   ]
 }
@@ -64,28 +46,17 @@ object Parse {
     val resultOfParsing = P.run(json)(jsonTxt) // this parses JSON input into a JSON object
     resultOfParsing.flatMap(j => unpackWithForComprehension(j)).map(dto => println(dto)).map(_ => ())
   }
-  case class SeasonDTO(tournaments: Int, rounds: Int, players: List[Map[String, Any]])
-  case class DTO1(tournaments: Int, rounds: Int, players: List[String])
+  case class SeasonDTO(tournaments: Int, rounds: Int, players: List[Map[String, String]])
+  case class TemporaryDTO(tournaments: Int, rounds: Int, players: List[Object])
 
-  def unpackWithForComprehension(json: JSON): Either[ParseError, DTO1] =
+  def unpackWithForComprehension(json: JSON): Either[ParseError, TemporaryDTO] =
     json match {
       case jObject: JObject =>
         for {
           tournaments <- unpackNumber(jObject, "tournaments")
           rounds <- unpackNumber(jObject, "roundsPerMatch")
           players <- unpackArray(jObject, "players")
-        } yield DTO1(tournaments.toInt, rounds.toInt, players)
-      case _ => Left(ParseError(List((Location("Could not unpack JSON contents"),"Could not unpack JSON contents"))))
-    }
-
-  def unpack2(json: JSON): Either[ParseError, DTO1] =
-    json match {
-      case jObject: JObject =>
-        for {
-          name <- unpackString(jObject, "name")
-          playerType <- unpackNumber(jObject, "type")
-          players <- unpackArray(jObject, "players")
-        } yield
+        } yield TemporaryDTO(tournaments.toInt, rounds.toInt, players)
       case _ => Left(ParseError(List((Location("Could not unpack JSON contents"),"Could not unpack JSON contents"))))
     }
 
@@ -105,7 +76,7 @@ object Parse {
     case _ => Left(ParseError(List((Location("Could not unpack ticker"), "ticker"))))
   }
 
-  def unpackList(c: List[JSON], r: Either[ParseError,List[String]]): Either[ParseError,List[String]] =
+  def unpackList(c: List[JSON], r: Either[ParseError,List[Object]]): Either[ParseError,List[Object]] =
     c match {
       case ::(head, next) => head match {
         case JString(v) => unpackList(next, r.flatMap(list => Right(v :: list)))
@@ -114,7 +85,7 @@ object Parse {
       case Nil => r
     }
 
-  def unpackArray(jObject: JObject, key: String): Either[ParseError, List[String]] = {
+  def unpackArray(jObject: JObject, key: String): Either[ParseError, List[Object]] = {
     for {
       relatedPacked <- jObject.get(key) match {
         case jArray: JArray => Right(jArray.get)
