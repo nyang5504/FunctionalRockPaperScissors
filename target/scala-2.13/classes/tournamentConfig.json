@@ -1,0 +1,49 @@
+{
+  "tournaments": 1000,
+  "roundsPerMatch": 1000,
+  "randomSeed": 12345,
+  "players": [
+    {
+      "name": "Last Losing 1",
+      "type": "LastLosingMovePlayer"
+    },
+    {
+      "name": "Last Losing 2",
+      "type": "LastLosingMovePlayer",
+    },
+    {
+      "name": "Last Winning 1",
+      "type": "LastWinningMovePlayer",
+    },
+    {
+      "name": "Majority Losing 1",
+      "type": "MajorityLosingMovePlayer"
+    },
+    {
+      "name": "Majority Winning 1",
+      "type": "MajorityWinningMovePlayer"
+    },
+    {
+      "name": "Unbiased Random 1",
+      "type": "RandomMovePlayer"
+    },
+    {
+      "name": "Biased Random 1",
+      "type": "BiasedRandomMovePlayer",
+      "weights": {
+        "rock": 0.5,
+        "paper": 0.25,
+        "scissors": 0.25
+      }
+    },
+    {
+      "name": "Biased Random 2",
+      "type": "BiasedRandomMovePlayer",
+      "weights": {
+        "rock": 0.8,
+        "paper": 0.1,
+        "scissors": 0.1
+      }
+    }
+  ]
+}
