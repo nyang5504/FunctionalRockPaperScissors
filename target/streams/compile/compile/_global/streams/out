@@ -1,0 +1,43 @@
+[0m[[0m[33mwarn[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/fpinscala/state/State.scala:94:15: abstract type pattern A is unchecked since it is eliminated by erasure[0m
+[0m[[0m[33mwarn[0m] [0m[0m      val (a: A, rng2: RNG) = s(rng)[0m
+[0m[[0m[33mwarn[0m] [0m[0m              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/please_refactor/rockpaperscissors/MixedTournamentSeason.scala:9:79: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : ((benjamingarrett.rockpaperscissorstools.RPSPlayer, benjamingarrett.rockpaperscissorstools.RPSPlayer), List[benjamingarrett.rockpaperscissorstools.RPSOutcome])[0m
+[0m[[0m[31merror[0m] [0m[0m required: ((benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer, benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer), List[benjamingarrett.rockpaperscissorstools.RPSOutcome])[0m
+[0m[[0m[31merror[0m] [0m[0m      .map(tourneyResult => tourneyResult.flatMap(matchResult => getWinTotals(matchResult)))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/please_refactor/rockpaperscissors/MixedTournamentSeason.scala:13:59: value _1 is not a member of Any[0m
+[0m[[0m[31merror[0m] [0m[0m        case (ranking, pair) => updatePlayerRankings(pair._1, pair._2, ranking)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/please_refactor/rockpaperscissors/MixedTournamentSeason.scala:13:68: value _2 is not a member of Any[0m
+[0m[[0m[31merror[0m] [0m[0m        case (ranking, pair) => updatePlayerRankings(pair._1, pair._2, ranking)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/please_refactor/rockpaperscissors/MixedTournamentSeason.scala:13:72: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
+[0m[[0m[31merror[0m] [0m[0m required: Map[benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer,Int][0m
+[0m[[0m[31merror[0m] [0m[0m        case (ranking, pair) => updatePlayerRankings(pair._1, pair._2, ranking)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/please_refactor/rockpaperscissors/MixedTournamentSeason.scala:20:60: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Map[(benjamingarrett.rockpaperscissorstools.RPSPlayer, benjamingarrett.rockpaperscissorstools.RPSPlayer),List[benjamingarrett.rockpaperscissorstools.RPSOutcome]][0m
+[0m[[0m[31merror[0m] [0m[0m required: Map[(benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer, benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer),List[benjamingarrett.rockpaperscissorstools.RPSOutcome]][0m
+[0m[[0m[31merror[0m] [0m[0mNote: (benjamingarrett.rockpaperscissorstools.RPSPlayer, benjamingarrett.rockpaperscissorstools.RPSPlayer) >: (benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer, benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer), but trait Map is invariant in type K.[0m
+[0m[[0m[31merror[0m] [0m[0mYou may wish to investigate a wildcard type such as `_ >: (benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer, benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer)`. (SLS 3.2.10)[0m
+[0m[[0m[31merror[0m] [0m[0m        .map((event: RPSTournament) => event.playTournament(players))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/please_refactor/rockpaperscissors/RockPaperScissorsCmdGame.scala:78:49: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : List[Map[(benjamingarrett.rockpaperscissorstools.RPSPlayer, benjamingarrett.rockpaperscissorstools.RPSPlayer),List[benjamingarrett.rockpaperscissorstools.RPSOutcome]]][0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Map[(benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer, benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer),List[benjamingarrett.rockpaperscissorstools.RPSOutcome]]][0m
+[0m[[0m[31merror[0m] [0m[0m    val handle1 = MixedTournamentSeason.handle1(allResults)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/please_refactor/rockpaperscissors/RockPaperScissorsCmdGame.scala:79:49: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : List[Map[(benjamingarrett.rockpaperscissorstools.RPSPlayer, benjamingarrett.rockpaperscissorstools.RPSPlayer),List[benjamingarrett.rockpaperscissorstools.RPSOutcome]]][0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Map[(benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer, benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer),List[benjamingarrett.rockpaperscissorstools.RPSOutcome]]][0m
+[0m[[0m[31merror[0m] [0m[0m    val handle2 = MixedTournamentSeason.handle2(allResults)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/ninay/Documents/Scala/FunctionalRockPaperScissors/src/main/scala/please_refactor/rockpaperscissors/RockPaperScissorsCmdGame.scala:80:49: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : List[Map[(benjamingarrett.rockpaperscissorstools.RPSPlayer, benjamingarrett.rockpaperscissorstools.RPSPlayer),List[benjamingarrett.rockpaperscissorstools.RPSOutcome]]][0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Map[(benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer, benjamingarrett.rockpaperscissorstools.RPSHistoryBasedPlayer),List[benjamingarrett.rockpaperscissorstools.RPSOutcome]]][0m
+[0m[[0m[31merror[0m] [0m[0m    val handle3 = MixedTournamentSeason.handle3(allResults)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0m8 errors found[0m

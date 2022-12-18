@@ -45,6 +45,7 @@ object Parse {
     val json: Parser[JSON] = JSON.jsonParser(P)
     val resultOfParsing = P.run(json)(jsonTxt) // this parses JSON input into a JSON object
     resultOfParsing.flatMap(j => unpackWithForComprehension(j)).map(dto => println(dto)).map(_ => ())
+
   }
   case class SeasonDTO(tournaments: Int, rounds: Int, players: List[Map[String, String]])
   case class TemporaryDTO(tournaments: Int, rounds: Int, players: List[Object])
@@ -59,6 +60,17 @@ object Parse {
         } yield TemporaryDTO(tournaments.toInt, rounds.toInt, players)
       case _ => Left(ParseError(List((Location("Could not unpack JSON contents"),"Could not unpack JSON contents"))))
     }
+
+
+//  def unpackObject(tourney: Int, rounds: Int, players: List[Object]): SeasonDTO = {
+//    for(obj <- players){
+//      case jObject: JObject =>
+//        for {
+//          name <- unpackString(jObject, "name")
+//          playertype <- unpackString(jObject, "type")
+//        } yield SeasonDTO(tourney, rounds, )
+//    }
+//  }
 
 
   def unpackString(jObject: JObject, key: String): Either[ParseError,String] = jObject.get(key) match {
