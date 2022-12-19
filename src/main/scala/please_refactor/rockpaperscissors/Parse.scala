@@ -47,19 +47,29 @@ object Parse {
     resultOfParsing.flatMap(j => unpackWithForComprehension(j)).map(dto => println(dto)).map(_ => ())
 
   }
-  case class SeasonDTO(tournaments: Int, rounds: Int, players: List[Map[String, String]])
-  case class TemporaryDTO(tournaments: Int, rounds: Int, players: List[Object])
+  case class TemporaryDTO(tournaments: Int, rounds: Int, players: List[Map[String, String]])
+  case class SeasonDTO(tournaments: Int, rounds: Int, players: List[Object])
 
-  def unpackWithForComprehension(json: JSON): Either[ParseError, TemporaryDTO] =
+  def unpackWithForComprehension(json: JSON): Either[ParseError, SeasonDTO] =
     json match {
       case jObject: JObject =>
         for {
           tournaments <- unpackNumber(jObject, "tournaments")
           rounds <- unpackNumber(jObject, "roundsPerMatch")
           players <- unpackArray(jObject, "players")
-        } yield TemporaryDTO(tournaments.toInt, rounds.toInt, players)
+        } yield SeasonDTO(tournaments.toInt, rounds.toInt, players)
       case _ => Left(ParseError(List((Location("Could not unpack JSON contents"),"Could not unpack JSON contents"))))
     }
+
+//  def unpackPlayers(json: JSON): Either[ParseError, Map[String,String]] =
+//    json match {
+//      case jObject: JObject =>
+//        for {
+//          name <- unpackString(jObject, "name")
+//          playerType <- unpackString(jObject, "type")
+//        } yield Map("name" -> name, "type" -> playerType)
+//      case _ => Left(ParseError(List((Location("Could not unpack JSON contents"),"Could not unpack JSON contents"))))
+//    }
 
 
 //  def unpackObject(tourney: Int, rounds: Int, players: List[Object]): SeasonDTO = {
@@ -72,6 +82,28 @@ object Parse {
 //    }
 //  }
 
+  def unpack(json: JSON): Either[ParseError,SeasonDTO] = {
+    val res = json match {
+      case jObject: JObject =>
+        for {
+          tournaments <- jObject.get("tournaments") match {
+            case jNumber: JNumber => Right(jNumber.get)
+            case _ => Left(ParseError(List((Location("Could not unpack price"),"price"))))
+          }
+          rounds <- jObject.get("roundsPerMatch") match {
+            case jNumber: JNumber => Right(jNumber.get)
+            case _ => Left(ParseError(List((Location("Could not unpack shares"),"shares"))))
+          }
+          players <- jObject.get("players") match {
+            case jArray: JArray => Right(jArray.get)
+            case _ => Left(ParseError(List((Location("Could not unpack related"),"related"))))
+          }
+          related <- unpackList(players.toList, Right(List.empty))
+        } yield SeasonDTO(tournaments.toInt,rounds.toInt,related)
+      case _ => Left(ParseError(List((Location("Could not unpack JSON contents"),"Could not unpack JSON contents"))))
+    }
+    res
+  }
 
   def unpackString(jObject: JObject, key: String): Either[ParseError,String] = jObject.get(key) match {
     case jString: JString => Right(jString.get)
